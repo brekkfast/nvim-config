@@ -2,7 +2,6 @@ require('nvim-web-devicons').setup()
 require('nvim-tree').setup()
 require('trouble').setup()
 require('lualine').setup()
-require('Comment').setup()
 require('conform').setup({
   formatters_by_ft = {
     lua = { "stylua" },
@@ -11,13 +10,14 @@ require('conform').setup({
   format_on_save = {timeout_ms = 500, lsp_fallback = true},
 })
 
-local ft = require('Comment.ft')
-ft.javascript = {'// %s', '/* %s */'}
-ft.madlib = {'// %s', '/* %s */'}
+require('overseer').setup({
+  templates = { "builtin", "user.madlib_test" },
+})
 
 require('noice').setup({
   cmdline = {
     view = "cmdline_popup",
+    -- view = "cmdline"
   },
   lsp = {
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -34,8 +34,13 @@ require('noice').setup({
     inc_rename = false, -- enables an input dialog for inc-rename.nvim
     lsp_doc_border = true, -- add a border to hover docs and signature help
   },
+  -- messages = {
+    -- enabled = true,
+    -- view = "notify",
+    -- view_error = "messages"
+  -- },
   mini = {
-    timeout = 4000
+    timeout = 1750
   }
 })
 require("coverage").setup({

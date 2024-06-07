@@ -17,18 +17,22 @@ require('lazy').setup({
     config = function () 
       local configs = require("nvim-treesitter.configs")
       configs.setup({
-          ensure_installed = { "c", "lua", "vim", "vimdoc", "query","javascript", "html" },
+          ensure_installed = { "c", "lua", "vim", "vimdoc", "query","javascript", "jsdoc", "typescript", "html" },
           sync_install = false,
           highlight = { enable = true },
-          indent = { enable = true },  
+          indent = { enable = true },
         })
     end
   },
   'nvim-tree/nvim-tree.lua',
-  'nvim-tree/nvim-web-devicons',
-  
+  'nvim-tree/nvim-web-devicons',  
+  {
+  "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+  },
   { 'junegunn/fzf', dir = '~/.fzf', build = './install --all' },
-'numToStr/Comment.nvim',
+  'stevearc/overseer.nvim',
   'nvim-lua/plenary.nvim',
   'andythigpen/nvim-coverage',
   {
@@ -108,10 +112,27 @@ require('lazy').setup({
     }
   },
   {'stevearc/conform.nvim'},
-  'madlib-lang/vim-madlib'
+  {'madlib-lang/vim-madlib'
+  },
+  {
+    "folke/ts-comments.nvim",
+    lang = {
+      madlib = "// %s",
+    },
+    event = "VeryLazy",
+    enabled = vim.fn.has("nvim-0.10.0") == 1,
+  },
+  -- {
+  --   name = 'vim-madlib',
+  --   dir = '~/madness/vim-madlib',
+  --   dev = true,
+  --   branch = 'commentstring'
+  -- }
 })
-require('settings')
-require('plugins')
-require('theme')
-require('mappings')
-require('autocmd')
+require('brekk.settings')
+require('brekk.plugins')
+-- theme must be after plugins are set
+require('brekk.theme')
+require('brekk.mappings')
+require('brekk.autocmd')
+
