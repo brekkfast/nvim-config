@@ -26,3 +26,5 @@ vim.o.laststatus = 2
 -- })
 
 vim.o.commentstring = "// %s"
+
+vim.o.completeopt = 'menuone,noinsert,popup'

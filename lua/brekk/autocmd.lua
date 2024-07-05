@@ -24,3 +24,10 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   end,
   group = madlib_lsp_group
 })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
+})

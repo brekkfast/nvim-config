@@ -26,11 +26,12 @@ require('lazy').setup({
   },
   'nvim-tree/nvim-tree.lua',
   'nvim-tree/nvim-web-devicons',  
-  {
-  "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
-  },
+  'neovim/nvim-lspconfig',
+  -- {
+  -- "pmizio/typescript-tools.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  --   opts = {},
+  -- },
   { 'junegunn/fzf', dir = '~/.fzf', build = './install --all' },
   'stevearc/overseer.nvim',
   'nvim-lua/plenary.nvim',
@@ -111,9 +112,13 @@ require('lazy').setup({
       }
     }
   },
-  {'stevearc/conform.nvim'},
-  {'madlib-lang/vim-madlib'
+  {'stevearc/conform.nvim',
+    dependencies = {
+      'jose-elias-alvarez/null-ls.nvim'
+    }
   },
+  'norcalli/nvim-colorizer.lua',
+  'madlib-lang/vim-madlib',
   {
     "folke/ts-comments.nvim",
     lang = {
@@ -122,12 +127,22 @@ require('lazy').setup({
     event = "VeryLazy",
     enabled = vim.fn.has("nvim-0.10.0") == 1,
   },
+  'MunifTanjim/prettier.nvim',
   -- {
   --   name = 'vim-madlib',
   --   dir = '~/madness/vim-madlib',
   --   dev = true,
   --   branch = 'commentstring'
   -- }
+  
+  -- 'mfussenegger/nvim-lsp-compl'
+  -- 'hrsh7th/cmp-vsnip',
+  -- 'hrsh7th/nvim-cmp'
+  -- 'deathbeam/autocomplete.nvim'
+  {
+    'mrcjkb/haskell-tools.nvim',
+    version = '^3'
+  }
 })
 require('brekk.settings')
 require('brekk.plugins')
