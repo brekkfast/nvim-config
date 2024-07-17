@@ -44,7 +44,15 @@ require('lazy').setup({
     'rose-pine/neovim',
     name = 'rose-pine'
   },
-  'folke/trouble.nvim',
+  -- {
+    -- "folke/trouble.nvim",
+    -- version = "2.1.0",
+  -- },
+{
+  "folke/trouble.nvim",
+  opts = {}, -- for default options, refer to the configuration section for custom setup.
+  cmd = "Trouble",
+    },
   { 'folke/noice.nvim',
     event = 'VeryLazy',
     dependencies = {
