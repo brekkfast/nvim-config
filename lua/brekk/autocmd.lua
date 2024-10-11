@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     end
     vim.fn.winrestview(view)
   end,
-  group = madlib_lsp_group
+  group = madlib_lsp_group,
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
