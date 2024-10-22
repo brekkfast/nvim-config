@@ -22,7 +22,14 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     end
     vim.fn.winrestview(view)
   end,
-  group = madlib_lsp_group
+  group = madlib_lsp_group,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+  pattern = { "*.js,*.mjs,*.cjs" },
+  callback = function()
+    require("lint").try_lint("eslint")
+  end,
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -37,3 +44,4 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
     vim.cmd([[Trouble qflist open]])
   end,
 })
+vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
