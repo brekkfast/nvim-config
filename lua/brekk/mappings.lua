@@ -41,6 +41,12 @@
 --   { nargs = 0, range = true }
 -- )
 
+vim.api.nvim_create_user_command("Practice", function(args)
+  local inspect = require("inspect")
+  print("huh")
+  print(inspect(args))
+end, { nargs = 1, range = true })
+
 vim.api.nvim_create_user_command("Commentary", function(args)
   if args.range > 0 then
     print(args.line1 .. "->" .. args.line2 .. " ???")
@@ -53,3 +59,10 @@ end, { nargs = 0, range = true })
 vim.api.nvim_create_user_command("ESLint", function()
   require("lint").try_lint("eslint")
 end, { nargs = 0 })
+
+vim.api.nvim_create_user_command("FTS", function()
+  local pos = vim.api.nvim_win_get_cursor(0)[2]
+  local line = vim.api.nvim_get_current_line()
+  local nline = line:sub(0, pos) .. "/* eslint-disable @typescript-eslint/no-explicit-any */" .. line:sub(pos + 1)
+  vim.api.nvim_set_current_line(nline)
+end, { nargs = 0, desc = "Tell TypeScript to fuck right off" })

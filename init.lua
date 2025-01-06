@@ -28,12 +28,14 @@ require("lazy").setup({
   "nvim-tree/nvim-tree.lua",
   "nvim-tree/nvim-web-devicons",
   "neovim/nvim-lspconfig",
+  "jsongerber/nvim-px-to-rem",
   -- {
   -- "pmizio/typescript-tools.nvim",
   --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
   --   opts = {},
   -- },
-  { "junegunn/fzf", dir = "~/.fzf", build = "./install --all" },
+  "kikito/inspect.lua",
+  "ibhagwan/fzf-lua",
   "stevearc/overseer.nvim",
   "nvim-lua/plenary.nvim",
   "andythigpen/nvim-coverage",
@@ -218,7 +220,7 @@ require("lazy").setup({
 
   -- 'mfussenegger/nvim-lsp-compl'
   -- 'hrsh7th/cmp-vsnip',
-  -- 'hrsh7th/nvim-cmp'
+  "hrsh7th/nvim-cmp",
   -- 'deathbeam/autocomplete.nvim'
   -- {
   --  'mrcjkb/haskell-tools.nvim',
@@ -226,6 +228,19 @@ require("lazy").setup({
   --  lazy= false,
   -- },
   "wuelnerdotexe/vim-astro",
+  {
+    "isak102/ghostty.nvim",
+    config = function()
+      require("ghostty").setup({
+        file_pattern = "*/com.mitchellh.ghostty/config",
+      })
+    end,
+  },
+  {
+    "bezhermoso/tree-sitter-ghostty",
+    build = "make nvim_install",
+    ft = "ghostty",
+  },
 })
 require("brekk.settings")
 require("brekk.plugins")
